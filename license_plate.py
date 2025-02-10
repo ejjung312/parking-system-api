@@ -48,4 +48,6 @@ class LicensePlateDetector:
                 if license_plate_text is not None:
                     cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), color=(255, 0, 0), thickness=3)
 
-        return frame
+                    return frame, license_plate_crop, license_plate_text
+
+        return frame, None, None
