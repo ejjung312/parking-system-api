@@ -46,8 +46,12 @@ class LicensePlateDetector:
                 # print(license_plate_text, license_plate_text_score)
 
                 if license_plate_text is not None:
-                    cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), color=(255, 0, 0), thickness=3)
+                    license_plate_text_score = round(license_plate_text_score * 100)
 
-                    return frame, license_plate_crop, license_plate_text
+                    # TODO - 나중에 정확도 조정
+                    if license_plate_text_score >= 50:
+                        cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), color=(255, 0, 0), thickness=3)
+
+                        return frame, license_plate_crop, license_plate_text
 
         return frame, None, None
